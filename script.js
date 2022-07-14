@@ -5,15 +5,17 @@ const nav2 = document.getElementById('nav-2');
 const nav3 = document.getElementById('nav-3');
 const nav4 = document.getElementById('nav-4');
 const nav5 = document.getElementById('nav-5');
+const navItems = [nav1, nav2, nav3, nav4, nav5, menuBars]
 
 // Event Listeners
 
-menuBars.addEventListener('click', toggleNav);
-nav1.addEventListener('click', toggleNav);
-nav2.addEventListener('click', toggleNav);
-nav3.addEventListener('click', toggleNav);
-nav4.addEventListener('click', toggleNav);
-nav5.addEventListener('click', toggleNav);
+function toggleNavOnClick(element) {
+    element.forEach((nav) => {
+        nav.addEventListener('click', toggleNav);
+    })
+}
+
+toggleNavOnClick(navItems);
 
 function toggleNav() {
     // Toggle: Menu Bars Open/Closed
@@ -22,11 +24,9 @@ function toggleNav() {
     overlay.classList.toggle('overlay-active');
     if (overlay.classList.contains('overlay-active')) {
         // Animate In - Overlay
-        overlay.classList.add("overlay-slide-right");
         overlay.classList.replace("overlay-slide-left", "overlay-slide-right");
     } else {
         // animate out - overlay
-        overlay.classList.add("overlay-slide-left");
         overlay.classList.replace("overlay-slide-right", "overlay-slide-left");
     };
 }
